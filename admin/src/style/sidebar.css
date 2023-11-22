@@ -1,0 +1,80 @@
+.barra-lateral {
+    display: flex;
+    /* position: fixed; */
+    flex-direction: column;
+    align-items: center;
+    background: #334155;
+    flex-shrink: 0;
+    width: 18rem;
+    height: 100vh;
+    color: #FFF;
+}
+
+
+.txt-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-top: 3rem;
+}
+
+.box-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.25rem;
+}
+
+.nome-perfil{
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.cargo{
+    color: rgba(255, 255, 255, 0.40);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.menu-items {
+    list-style: none;
+    margin-top: 4rem;
+    color: #FFF;
+    line-height: 30px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-style: normal;
+}
+.active{
+    color:#4FC3A1;
+}
+
+.menu-items a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-items>li>a{
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    height: 2.5rem;
+    padding: 0 10px;
+}
+
+.menu-items>li>a>img {
+    margin-right: 1rem;
+}
+
+.img{
+    width: 30px;
+}
+
+.img-titulo{
+    width: 60px;
+}

@@ -1,0 +1,15 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container{
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
+    color:aqua;
+  }

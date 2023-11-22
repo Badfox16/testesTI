@@ -1,0 +1,217 @@
+[
+    {
+      "nome": "FUNDAMENTOS DE TECNOLOGIAS DE INFORMAÇÃO",
+      "ano": 1,
+      "semestre": 1
+    },
+    {
+      "nome": "ÁLGEBRA",
+      "ano": 1,
+      "semestre": 1
+    },
+    {
+      "nome": "INTRODUÇÃO À INFORMÁTICA",
+      "ano": 1,
+      "semestre": 1
+    },
+    {
+      "nome": "METODOS DE PESQUISA",
+      "ano": 1,
+      "semestre": 1
+    },
+    {
+      "nome": "INGLÊS I",
+      "ano": 1,
+      "semestre": 1
+    },
+    {
+      "nome": "PLATAFORMAS DE HARDWARE E SOFTWARE",
+      "ano": 1,
+      "semestre": 2
+    },
+    {
+      "nome": "INGLÊS II",
+      "ano": 1,
+      "semestre": 2
+    },
+    {
+      "nome": "FUNDAMENTOS DE REDES",
+      "ano": 1,
+      "semestre": 2
+    },
+    {
+      "nome": "HIV/SIDA E HABILIDADES DE VIDA SAÚDE REPRODUTIVA",
+      "ano": 1,
+      "semestre": 2
+    },
+    {
+      "nome": "FUNDAMENTOS DE PROGRAMAÇÃO",
+      "ano": 1,
+      "semestre": 2
+    },
+    {
+        "nome": "ANÁLISE E DESENHO DE BASE DE DADOS",
+        "ano": 2,
+        "semestre": 1
+      },
+      {
+        "nome": "ESTRUTURA DE DADOS E ALGORITMO",
+        "ano": 2,
+        "semestre": 1
+      },
+      {
+        "nome": "INGLÊS III",
+        "ano": 2,
+        "semestre": 1
+      },
+      {
+        "nome": "FUNDAMENTOS DE DESENHO DE PÁGINAS WEB",
+        "ano": 2,
+        "semestre": 1
+      },
+      {
+        "nome": "ANÁLISE E DESENHO ORIENTADO PARA OBJECTOS",
+        "ano": 2,
+        "semestre": 1
+      },
+      {
+        "nome": "INGLÊS IV",
+        "ano": 2,
+        "semestre": 2
+      },
+      {
+        "nome": "ADMINISTRAÇÃO E MANUTENÇÃO DE SISTEMAS",
+        "ano": 2,
+        "semestre": 2
+      },
+      {
+        "nome": "IMPLEMENTAÇÃO DE BASE DE DADOS",
+        "ano": 2,
+        "semestre": 2
+      },
+      {
+        "nome": "ESTUDOS AVANÇADOS DE REDES DE COMPUTADORES",
+        "ano": 2,
+        "semestre": 2
+      },
+      {
+        "nome": "FUNDAMENTOS DE TEOLOGIA CATÓLICA",
+        "ano": 2,
+        "semestre": 2
+      },
+      {
+        "nome": "PROGRAMAÇÃO ORIENTADA PARA OBJECTOS",
+        "ano": 2,
+        "semestre": 2
+      },
+      {
+        "nome": "TECNOLOGIAS DE INTERNET",
+        "ano": 3,
+        "semestre": 1
+      },
+      {
+        "nome": "ADMINISTRAÇÃO DE BASE DE DADOS",
+        "ano": 3,
+        "semestre": 1
+      },
+      {
+        "nome": "DESENHO, IMPLEMENTAÇÃO DE APLICAÇÕES CORPORATIVAS",
+        "ano": 3,
+        "semestre": 1
+      },
+      {
+        "nome": "ÉTICA PROFESSIONAL PARA TI",
+        "ano": 3,
+        "semestre": 1
+      },
+      {
+        "nome": "SEGURANÇA DE REDES",
+        "ano": 3,
+        "semestre": 1
+      },
+      {
+        "nome": "MULTIMÉDIA",
+        "ano": 3,
+        "semestre": 1
+      },
+      {
+        "nome": "GESTÃO DE SERVIÇOS DE TI",
+        "ano": 3,
+        "semestre": 2
+      },
+      {
+        "nome": "ADMINISTRAÇÃO DE SERVIÇOS DE REDE",
+        "ano": 3,
+        "semestre": 2
+      },
+      {
+        "nome": "PROGRAMAÇÃO VISUAL",
+        "ano": 3,
+        "semestre": 2
+      },
+      {
+        "nome": "PROGRAMAÇÃO MÓVEL",
+        "ano": 3,
+        "semestre": 2
+      },
+      {
+        "nome": "PRÁTICAS EM IT (LABORATÓRIO / ESTÁGIO)",
+        "ano": 3,
+        "semestre": 2
+      },
+      {
+        "nome": "GESTÃO DE PROJECTOS EM TI",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "ARQUITECTURA E INTEGRAÇÃO DE SISTEMAS",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "TESTAGEM E VALIDAÇÃO",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "HABILIDADES ESSENCIAIS EM ADMINISTRAÇÃO DE INFORMAÇÃO",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "ADMINISTRAÇÃO DE VOZ/VOIP",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "INTELIGÊNCIA ARTIFICIAL",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "PROGRAMAÇÃO GRÁFICA",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "DESENHO E IMPLEMENTAÇÃO DE APLICAÇÕES E BUSINESS",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "ANÁLISE DE DADOS",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "PROGRAMAÇÃO AVANÇADA: JAVA & C",
+        "ano": 4,
+        "semestre": 1
+      },
+      {
+        "nome": "SEGURANÇA CORPORATIVA",
+        "ano": 4,
+        "semestre": 1
+      }
+  ]
