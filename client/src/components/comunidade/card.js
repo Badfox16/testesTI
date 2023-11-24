@@ -1,7 +1,9 @@
 import React from 'react'
+import {format} from 'date-fns'
+import { Link } from "react-router-dom";
 import './card.scss'
 
-const CardComunidade = () => {
+const CardComunidade = ({id, cadeira, autor, ano, semestre, detalhes, tipo, titulo, createdAt}) => {
     const imageUrl = 'https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg';
 
     return (
@@ -10,23 +12,23 @@ const CardComunidade = () => {
                 <div className="meta">
                     <div className="photo" style={{ backgroundImage: `url(${imageUrl})` }}></div>
                     <ul className="details">
-                        <li className="author"><a href="/#">Jane Doe</a></li>
-                        <li className="date">July. 15, 2015</li>
+                        <li className="author">Autor: {autor}</li>
+                        <time className='date'>{format(new Date(createdAt), "MMM d, yyyy HH:mm")}</time>
                         <li className="tags">
                             <ul>
-                                <li><a href="/#">Learn</a></li>
-                                <li><a href="/#">Code</a></li>
-                                <li><a href="/#">JavaScript</a></li>
+                                <li>Tipo: {tipo}</li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div className="description">
-                    <h1>Mastering the Language</h1>
-                    <h2>Java is not the same as JavaScript</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                    <h1>{titulo}</h1>
+                    <h2>{cadeira}</h2>
+                    <p dangerouslySetInnerHTML={{ __html: detalhes }}></p>
                     <p className="read-more">
-                        <a href="/#">Read More</a>
+                        <Link to={`/contribuicao/${id}`}>
+                            Ver mais
+                        </Link>
                     </p>
                 </div>
             </div>

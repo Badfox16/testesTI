@@ -1,12 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import './Criar.css'
 import Editor from "../Editor"
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../../UserContext";
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth, db } from '../../services/firebase'
 
 const PaginaCriar = () => {
+  const { setUserInfo, userInfo } = useContext(UserContext);
+  const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+      if (user) {
+        db.collection("usuarios").doc(user.uid).set({
+          email: user.email,
+          nome: user.displayName,
+          photoURL: user.photoURL,
+        });
+      }
+    }, [user]);
+    
+  const nome = `${userInfo?.nome} ${userInfo?.apelido}` || user?.nome;
+
+  useEffect(() => {
+    if (nome) {
+      setAutor(nome);
+    }
+  }, [nome]);
+
   const [tipo, setTipo] = useState("");
-  const [conteudo, setConteudo] = useState("");
+  const [autor, setAutor] = useState("");
+  const [titulo, setTitulo] = useState("")
+  const [detalhes, setDetalhes] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
@@ -63,11 +89,13 @@ const PaginaCriar = () => {
 
   async function criarContribuicao(ev) {
     const data = new FormData();
+    data.set("autor", autor)
     data.set("tipo", tipo);
+    data.set("titulo", titulo);
     data.set("cadeira", disciplinaSelecionada);
     data.set("ano", anoSelecionado);
     data.set("semestre", semestreSelecionado)
-    data.set("conteudo", conteudo);
+    data.set("detalhes", detalhes);
     data.set("file", files[0]);
 
     ev.preventDefault();
@@ -90,7 +118,7 @@ const PaginaCriar = () => {
   return (
     <div className="box">
       <div className="title">
-        <h2 style={{ color: "#4FC3A1" }}>Crie uma publicação e interaja com a comunidade</h2>
+        <h2 style={{ color: "#ff5757" }}>Crie uma publicação e interaja com a comunidade</h2>
       </div>
       <form onSubmit={criarContribuicao}>
 
@@ -162,27 +190,38 @@ const PaginaCriar = () => {
               <option value="" disabled>Selecione o Tipo</option>
               <option value="Contribuição">Contribuição</option>
               <option value="Dúvida">Dúvida</option>
-              <option value="Outro">Outro</option>
             </select>
           </div>
           <div className="form-ficheiro">
             <label for="imagem">Ficheiro: </label><br></br>
-            <input className="input" required
+            <input className="input"
               id="imagem"
               type="file"
               name="file"
               onChange={(ev) => setFiles(ev.target.files)}
             />
           </div>
+          <input type="text" hidden value={autor}/>
         </div>
-
+        {/* Titulo */}
+        <div className="form-linha">
+        <div className="form-grupo">
+            <label for="tipo">Titulo: </label>
+            <input className="input-text" required
+              id="titulo"
+              name="titulo"
+              value={titulo}
+              onChange={(ev) => setTitulo(ev.target.value)}
+            />
+          </div>
+        </div>
         {/* Editor */}
         <div className="form-linha">
-            <div className="form-grupo">
-              <h4 className="desc">Descrição: </h4>
-              <Editor value={conteudo} onChange={setConteudo} />
-            </div>
+          <div className="form-grupo">
+            <h4 className="desc">Detalhes: </h4>
+            <Editor value={detalhes} onChange={setDetalhes} />
           </div>
+        </div>
         <button className="button">Submeter</button>
       </form>
     </div>

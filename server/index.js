@@ -4,7 +4,7 @@ const { default: mongoose } = require('mongoose');
 const Usuario = require('./models/Usuario.js');
 const Teste = require('./models/Teste.js')
 const Disciplina = require('./models/Disciplina.js')
-const Comentario = require('./models/Comentarios.js')
+const Contribuicao = require('./models/Contribuicao.js')
 const bcrypt = require('bcryptjs');
 const app = express();
 const jwt = require('jsonwebtoken');
@@ -46,8 +46,7 @@ app.post('/cadastro', async (req, res) => {
     res.json(UsuarioDoc);
   } catch (error) {
     if (error.code === 11000) {
-      // Handle duplicate key error
-      res.status(400).json({ message: 'Telefone ou e-mail já estão em uso' });
+      res.status(400).json({ message: 'E-mail já estão em uso' });
     } else {
       res.status(400).json({ message: error.message });
     }
@@ -78,10 +77,6 @@ app.post('/entrar', async (req, res) => {
   } else {
     res.status(401).json("Credenciais erradas")
   }
-})
-
-app.post('/entrar-google', async  (req, res)=>{
-  
 })
 
 app.get('/perfil', (req, res) => {
@@ -127,16 +122,6 @@ app.post('/teste', uploadMiddleware.single('file'), async (req, res) => {
   }
 })
 
-app.get('/disciplinas', async (req, res) => {
-  try {
-    const disciplinas = await Disciplina.find();
-    res.json(disciplinas);
-  } catch (error) {
-    console.error('Erro ao buscar disciplinas:', error);
-    res.status(500).json({ error: 'Erro ao buscar disciplinas' });
-  }
-})
-
 app.get('/testes', async (req, res) => {
   try {
     const testes = await Teste.find().sort({ createdAt: -1 });
@@ -150,66 +135,15 @@ app.get('/testes', async (req, res) => {
 app.get('/teste/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const testeDoc = await Teste.findById(id);
-    if (testeDoc) {
-      res.json(testeDoc);
+    const contribuicaoDoc = await Teste.findById(id);
+    if (contribuicaoDoc) {
+      res.json(contribuicaoDoc);
     } else {
       res.status(404).json({ error: 'Teste não encontrado' });
     }
   } catch (error) {
     console.error("Erro ao buscar o teste: ", error);
     res.status(500).json({ error: 'Erro interno do servidor' });
-  }
-})
-
-app.get('/pesquisa/testes', async (req, res) => {
-  try {
-
-    const { ano, semestre, tipo, cadeira } = req.query;
-
-    const anosPermitidos = [1, 2, 3, 4];
-    const semestresPermitidos = [1, 2];
-    const tiposPermitidos = ["Primeiro Teste", "Segundo Teste", "Exame Normal", "Exame de Recorrência"];
-
-    const query = {};
-
-    if (anosPermitidos.includes(parseInt(ano))) {
-      query.ano = parseInt(ano);
-    }
-    if (semestresPermitidos.includes(parseInt(semestre))) {
-      query.semestre = parseInt(semestre);
-    }
-    if (tiposPermitidos.includes(tipo)) {
-      query.tipo = tipo;
-    }
-    if (cadeira) {
-      query.cadeira = new RegExp(cadeira, 'i'); 
-    }
-
-    const testes = await Teste.find(query)
-
-    res.json(testes);
-  } catch (error) {
-    console.error('Erro ao buscar testes:', error);
-    res.status(500).json({ error: 'Ocorreu um erro ao buscar os testes.' });
-  }
-});
-
-app.get('/pesquisa/disciplinas', async (req,res)=>{
-  try {
-    const {cadeira} = req.query;
-
-    const query = {}
-
-    if (cadeira) {
-      query.cadeira = new RegExp(cadeira, 'i')
-    }
-
-    const disciplinas = await Disciplina.find(query)
-
-    res.json(disciplinas)
-  } catch (error) {
-    console.error(error)
   }
 })
 
@@ -257,30 +191,137 @@ app.put('/teste', uploadMiddleware.single('file'), async (req, res) => {
   }
 });
 
+app.get('/pesquisa/testes', async (req, res) => {
+  try {
+
+    const { ano, semestre, tipo, cadeira } = req.query;
+
+    const anosPermitidos = [1, 2, 3, 4];
+    const semestresPermitidos = [1, 2];
+    const tiposPermitidos = ["Primeiro Teste", "Segundo Teste", "Exame Normal", "Exame de Recorrência"];
+
+    const query = {};
+
+    if (anosPermitidos.includes(parseInt(ano))) {
+      query.ano = parseInt(ano);
+    }
+    if (semestresPermitidos.includes(parseInt(semestre))) {
+      query.semestre = parseInt(semestre);
+    }
+    if (tiposPermitidos.includes(tipo)) {
+      query.tipo = tipo;
+    }
+    if (cadeira) {
+      query.cadeira = new RegExp(cadeira, 'i'); 
+    }
+
+    const testes = await Teste.find(query)
+
+    res.json(testes);
+  } catch (error) {
+    console.error('Erro ao buscar testes:', error);
+    res.status(500).json({ error: 'Ocorreu um erro ao buscar os testes.' });
+  }
+});
+
+app.get('/disciplinas', async (req, res) => {
+  try {
+    const disciplinas = await Disciplina.find();
+    res.json(disciplinas);
+  } catch (error) {
+    console.error('Erro ao buscar disciplinas:', error);
+    res.status(500).json({ error: 'Erro ao buscar disciplinas' });
+  }
+})
+
+app.get('/pesquisa/disciplinas', async (req,res)=>{
+  try {
+    const {cadeira} = req.query;
+
+    const query = {}
+
+    if (cadeira) {
+      query.cadeira = new RegExp(cadeira, 'i')
+    }
+
+    const disciplinas = await Disciplina.find(query)
+
+    res.json(disciplinas)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 app.post('/logout', (req,res) => {
   res.cookie('token', '', { expires: new Date(0) }).json('ok');
 });
 
-app.post('/comentario', async (req,res) => {
-
-  const { token } = req.cookies
+app.post('/contribuicao', uploadMiddleware.single('file'), async (req, res) => {
   try {
-    jwt.verify(token, secret, {}, async (err, info) => {
-      if (err) throw err;
-      res.json(info)
-      const testeId = req.params.id;
-      const {conteudo} = req.body;
-      const comentariosDoc = await Comentario.create({
-        testeId,
-        conteudo,
-        autor: info.id
-      });
-      res.json(comentariosDoc);
-    })
+    let newPath = "";
+    if (req.file) {
+      const { originalname, path } = req.file;
+      const parts = originalname.split('.');
+      const ext = parts[parts.length - 1];
+      newPath = path + '.' + ext;
+      fs.renameSync(path, newPath);
+    }
+
+    const { tipo, cadeira, ano, semestre, autor, titulo, detalhes } = req.body;
+    console.log(req.body);
+    const ContribuicaoDoc = await Contribuicao.create({
+      tipo,
+      cadeira,
+      ano,
+      semestre,
+      autor,
+      titulo,
+      detalhes,
+      ficheiro: newPath,
+    });
+    res.json(ContribuicaoDoc);
   } catch (err) {
-    res.status(401).json('Token inválido')
+    console.log(err);
+    res.status(500).json({ error: 'Ocorreu um erro ao processar a contribuição.' });
+  }
+});
+
+app.get('/contribuicao/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const contribuicaoDoc = await Contribuicao.findById(id);
+    if (contribuicaoDoc) {
+      res.json(contribuicaoDoc);
+    } else {
+      res.status(404).json({ error: 'Teste não encontrado' });
+    }
+  } catch (error) {
+    console.error("Erro ao buscar o teste: ", error);
+    res.status(500).json({ error: 'Erro interno do servidor' });
   }
 })
+
+app.get('/pesquisa/contribuicoes', async (req, res) => {
+  try {
+
+    const { tipo } = req.query;
+
+    const tiposPermitidos = ["Dúvida", "Contribuição"];
+
+    const query = {};
+
+    if (tiposPermitidos.includes(tipo)) {
+      query.tipo = tipo;
+    }
+
+    const testes = await Contribuicao.find(query)
+
+    res.json(testes);
+  } catch (error) {
+    console.error('Erro ao buscar testes:', error);
+    res.status(500).json({ error: 'Ocorreu um erro ao buscar os testes.' });
+  }
+});
 
 app.post('/respostas', async (req,res)=>{
   console.log("ChatBot iniciado");

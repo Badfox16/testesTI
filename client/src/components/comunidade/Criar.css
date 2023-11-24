@@ -2,7 +2,7 @@
 .box{
     margin: 2rem auto;
     padding: 1rem;
-    border: solid #4FC3A1 1px;
+    border: solid #ff5757 1.7px;
     overflow-y: auto; 
     width: fit-content;
 }
@@ -42,16 +42,20 @@ label{
 
 .input, .input-text{
     background-color: #fff;
-    color: #4FC3A1;
+    color: #ff5757;
     font-weight: 570;
     width: 100%;
-    max-width: 220px;
+    /* max-width: 270px; */
     height: 30px;
     padding: 5px;
     border-radius: 12px;
-    border: 1.5px solid #4FC3A1;
+    border: 1.8px solid #ff5757;
     outline: none;
     box-shadow: 0px 0px 20px -18px;
+}
+
+.input-text{
+    min-width: 700px;
 }
 
 .desc{
@@ -65,7 +69,7 @@ label{
 }
 
 .input:hover {
-    border: 2px solid #4FC3A1;
+    border: 2px solid #ff5757;
     box-shadow: 0px 0px 20px -17px;
 }
 
@@ -74,7 +78,7 @@ label{
 } */
 
 .input:focus {
-    border: 2px solid #4FC3A1;
+    border: 2px solid #ff5757;
 }
 
 
@@ -84,7 +88,7 @@ label{
     border-radius: 8px;
     height: 40px;
     border: none;
-    background: #4FC3A1;
+    background: #ff5757;
     color: white;
     padding: 15px;
     box-shadow: 0 0.7065919983928324px 0.7065919983928324px -0.625px #00000026,

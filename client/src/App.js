@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import { UserContextProvider } from './UserContext';
 import PaginaComunidade from "./pages/PaginaComunidade";
+import PaginaContribuicao from "./pages/PaginaContribuicao";
 import PaginaCriar from "./components/comunidade/PaginaCriar";
 import PaginaEditar from "./components/comunidade/PaginaEditar";
 
@@ -28,6 +29,7 @@ function App() {
           <Route path={'/comunidade'} element={<PaginaComunidade/>}/>
           <Route path={'/comunidade/criar'} element={<PaginaCriar/>}/>
           <Route path={'/comunidade/editar'} element={<PaginaEditar/>}/>
+          <Route path={'/contribuicao/:id'} element={<PaginaContribuicao/>}/>
         </Route>
       </Routes>
     </UserContextProvider>

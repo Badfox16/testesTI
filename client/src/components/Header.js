@@ -46,7 +46,6 @@ export default function Header() {
             }
         } catch (error) {
             alert('Falha no logout')
-            console.error('Erro ao fazer logout:', error);
         }
     }
 
@@ -72,7 +71,7 @@ export default function Header() {
                             {window.location.pathname === "/comunidade" ? (
                                 <>
                                     {/* Renderizar links específicos para /comunidade */}
-                                    <Link to="/comunidade/criar">Contribuir</Link>
+                                    <Link to="/comunidade/criar">Publicar</Link>
                                     <Link to="/" onClick={logout}>Sair</Link>
                                 </>
                             ) : (

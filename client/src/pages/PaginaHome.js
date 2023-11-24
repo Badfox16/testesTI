@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import UserCard from "../components/UserCard";
+// import UserCard from "../components/UserCard";
 import Search from "../components/Search";
 import { UserContext } from "../UserContext";
 import { useAuthState } from 'react-firebase-hooks/auth'
