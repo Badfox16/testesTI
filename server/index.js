@@ -116,7 +116,6 @@ app.post('/teste', uploadMiddleware.single('file'), async (req, res) => {
       ficheiro: newPath,
     });
     res.json(TesteDoc);
-
   } catch (err) {
     console.log(err);
   }
@@ -135,9 +134,9 @@ app.get('/testes', async (req, res) => {
 app.get('/teste/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const contribuicaoDoc = await Teste.findById(id);
-    if (contribuicaoDoc) {
-      res.json(contribuicaoDoc);
+    const testeDoc = await Teste.findById(id);
+    if (testeDoc) {
+      res.json(testeDoc);
     } else {
       res.status(404).json({ error: 'Teste não encontrado' });
     }

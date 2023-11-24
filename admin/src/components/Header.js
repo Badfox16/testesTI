@@ -39,6 +39,11 @@ export default function Header() {
                                 <img src="/img/livros.png" className="img" alt="Ícone de correções"></img>
                                 <span className={location.pathname === '/disciplinas' ? 'active' : ''}>Disciplinas</span>
                             </Link>
+                        </li> <li>
+                            {/* <Link to={'/usuarios'}>
+                                <img src="/img/livros.png" className="img" alt="Ícone de correções"></img>
+                                <span className={location.pathname === '/usuarios' ? 'active' : ''}>Usuarios</span>
+                            </Link> */}
                         </li>
                     </ul>
                 </div>

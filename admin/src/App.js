@@ -5,17 +5,17 @@ import PaginaCriar from './pages/PaginaCriar';
 import PaginaEditar from './pages/PaginaEditar';
 import PaginaVer from './pages/PaginaTestes';
 import PaginaDisciplina from './pages/PaginaDisciplinas';
+import PaginaUsuarios from './pages/PaginaUsuarios';
 
 function App() {
   return (
         <Routes>
           <Route path='/' element={<Layout/>}>
-
             <Route path='/criar' element={<PaginaCriar/>} />
             <Route path='/editar/:id' element={<PaginaEditar/>} />
             <Route path='/ver' element={<PaginaVer/>} />
             <Route path='/disciplinas' element={<PaginaDisciplina/>} />
-
+            <Route path='/usuarios' element={<PaginaUsuarios/>} />
           </Route>
         </Routes>
   );
