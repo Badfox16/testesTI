@@ -146,3 +146,18 @@ main{
     padding: 2rem;
     border: solid #e14a4a;
  }
+
+ a.edit-btn{
+  background-color: #e14a4a;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  padding:15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  max-width: max-content;
+}
+a svg{
+  height:20px;
+}

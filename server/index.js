@@ -301,6 +301,51 @@ app.get('/contribuicao/:id', async (req, res) => {
   }
 })
 
+app.put('/contribuicao', uploadMiddleware.single('file'), async (req, res) => {
+  try {
+    const { tipo, cadeira, ano, semestre, autor, titulo, detalhes, id } = req.body;
+    const ContribuicaoDoc = await Contribuicao.findById(id);
+
+    if (!ContribuicaoDoc) {
+      return res.status(404).json({ error: 'Teste não encontrado' });
+    }
+
+    let newPath = null;
+    if (req.file) {
+      const { originalname, path } = req.file;
+      const parts = originalname.split('.');
+      const ext = parts[parts.length - 1];
+      newPath = path + '.' + ext;
+      fs.renameSync(path, newPath);
+    }
+
+    const updatedContribuicao = await Contribuicao.findOneAndUpdate(
+      { _id: id },
+      {
+        tipo,
+        cadeira,
+        ano,
+        semestre,
+        autor,
+        titulo,
+        detalhes,
+        ficheiro: newPath ? newPath : ContribuicaoDoc.ficheiro,
+      },
+      { new: true }
+    );
+
+    if (!updatedContribuicao) {
+      return res.status(500).json({ error: 'Falha ao atualizar o teste' });
+    }
+
+    res.json(updatedContribuicao);
+    console.log("atualizando o teste porra!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro interno do servidor' });
+  }
+});
+
 app.get('/pesquisa/contribuicoes', async (req, res) => {
   try {
 

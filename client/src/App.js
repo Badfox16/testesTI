@@ -28,7 +28,7 @@ function App() {
           {/* Assuntos da comunidade agora */}
           <Route path={'/comunidade'} element={<PaginaComunidade/>}/>
           <Route path={'/comunidade/criar'} element={<PaginaCriar/>}/>
-          <Route path={'/comunidade/editar'} element={<PaginaEditar/>}/>
+          <Route path={'/comunidade/editar/:id'} element={<PaginaEditar/>}/>
           <Route path={'/contribuicao/:id'} element={<PaginaContribuicao/>}/>
         </Route>
       </Routes>
